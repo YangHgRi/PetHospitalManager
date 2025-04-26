@@ -151,7 +151,6 @@ const handleSelectionChange = (val: Client[]): void => {
 const delBatchB = (): void => {
   if (roleIdList.value.length == 0) return
   ElMessageBox.confirm(
-      '这些被选中者，将迎来一场浩大而又凄美的结局。这是对他们选择和坚持的回报，是既悲痛又美丽的终结。',
       '删除多个确认',
       {
         confirmButtonText: '确认',
@@ -167,7 +166,6 @@ const delBatchB = (): void => {
 // 删除单个
 const delOne = (row: Client): void => {
   ElMessageBox.confirm(
-      `【${row.clientName}】已无路可退，只能接受命运的裁决。`,
       '删除单个确认',
       {
         confirmButtonText: '确认',

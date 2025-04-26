@@ -15,9 +15,9 @@
       <path d="M0 80 Q500 280 ,1000 80" fill="url(#Gradient)" stroke="transparent"/>
     </svg>
     <!--登陆卡片-->
-    <h2 class="my-h2">轻触牌间喵，进入影中境</h2>
+    <h2 class="my-h2">单击小猫切换登录模式</h2>
     <!-- 用户登录 -->
-    <div :style="{ transform: pairClient }" class="mixJade">
+    <div :style="{ transform: pairClient }" class="phm-card">
       <img alt="管理员入口" height="48" src="/mia.svg" width="64" @click="clientToAdmin">
       <LoginForm :role="RoleEnum.CLIENT" @loginSuc="getLoginRole"/>
       <div>
@@ -27,10 +27,9 @@
       </div>
     </div>
     <!-- 医生登录 -->
-    <div :style="{ transform: pairAdmin }" class="mixJade">
+    <div :style="{ transform: pairAdmin }" class="phm-card">
       <img alt="普通入口" height="48" src="/mia.svg" width="64" @click="adminToClient">
       <LoginForm :role="RoleEnum.DOCTOR" @loginSuc="getLoginRole"/>
-      <div style="color: #6c757d">智慧唯在沉思中得享</div>
     </div>
   </div>
 </template>
@@ -99,7 +98,7 @@ const adminToClient = () => {
 }
 
 /* 翻转的卡片 */
-.mixJade {
+.phm-card {
   position: absolute;
   width: 320px;
   margin-top: 8%;

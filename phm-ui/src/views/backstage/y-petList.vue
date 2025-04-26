@@ -173,7 +173,6 @@ const handleSelectionChange = (val: Pet[]): void => {
 const delBatchB = (): void => {
   if (roleIdList.value.length == 0) return
   ElMessageBox.confirm(
-      '此处犹如寒冰之墓，飘落的雪消声无息。一群疲惫的动物在这冰冷的静寂里深深铭记，无尽等待，等待着凄凉的宿命落幕。',
       '删除多个确认',
       {
         confirmButtonText: '确认',
@@ -189,7 +188,6 @@ const delBatchB = (): void => {
 // 删除单个
 const delOne = (row: Pet): void => {
   ElMessageBox.confirm(
-      `此地死寂如冰，落雪无声，一只憔悴的【${row.petName}】于静默中铭记与等待`,
       '删除单个确认',
       {
         confirmButtonText: '确认',

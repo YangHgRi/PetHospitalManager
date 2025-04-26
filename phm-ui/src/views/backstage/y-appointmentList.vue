@@ -161,7 +161,6 @@ const handleSelectionChange = (val: Appoint[]): void => {
 const delBatchB = (): void => {
   if (roleIdList.value.length == 0) return
   ElMessageBox.confirm(
-      '在您做出指示之前，我还是要再次确认，您确定要焚毁这些的订单吗？',
       '删除多个确认',
       {
         confirmButtonText: '确认',
@@ -177,7 +176,6 @@ const delBatchB = (): void => {
 // 删除单个
 const delOne = (id: number): void => {
   ElMessageBox.confirm(
-      `解脱一纸束缚的契约，赐予其尘归尘的命运。`,
       '删除单个确认',
       {
         confirmButtonText: '确认',

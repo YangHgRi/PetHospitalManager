@@ -2,7 +2,7 @@
   <div>
     <header>
       <router-link to="/reception/clientCenter">
-        MixJade
+        宠物医院管理系统
       </router-link>
       <ul>
         <li><a @click="openDialog(notices[0])">网站公告</a></li>
