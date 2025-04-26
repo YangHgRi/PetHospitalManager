@@ -48,7 +48,7 @@ const emit = defineEmits<{
 const getRoleName = computed(() => {
   switch (prop.role) {
     case RoleEnum.DOCTOR:
-      return "医生";
+      return "后台";
     default:
       return "用户";
   }
