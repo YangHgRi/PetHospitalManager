@@ -1,5 +1,10 @@
 # -Dspring.profiles.active=local
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/pet_ship?useSSL=true
+    username: ${DB_USERNAME} # 用户名
+    password: ${DB_PASSWORD} # 密码
   mail:
     username: 2231973602@qq.com # 发送者的邮箱，必须是QQ邮箱
     password: LocalLocalLocal # 发送者邮箱的授权码，我将这个服务关闭了

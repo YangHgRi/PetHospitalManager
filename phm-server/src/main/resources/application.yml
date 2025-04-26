@@ -1,11 +1,6 @@
 spring:
   profiles:
     active: dev # 默认使用dev配置文件
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/pet_ship?useSSL=true
-    username: ${DB_USERNAME} # 用户名
-    password: ${DB_PASSWORD} # 密码
   mail:
     host: smtp.qq.com # 邮箱配置，账号与授权码在dev中
     port: 587
