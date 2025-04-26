@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com</groupId>
-    <artifactId>ship</artifactId>
+    <artifactId>phm-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>宠物医院2.0</name>
     <description>宠物医院管理系统重置版的后端</description>
