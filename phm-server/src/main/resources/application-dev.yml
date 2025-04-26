@@ -2,7 +2,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/pet_ship?useSSL=true
+    url: jdbc:mysql://localhost:3306/phm?useSSL=true
     username: ${DB_USERNAME} # 用户名
     password: ${DB_PASSWORD} # 密码
   mail:
