@@ -7,5 +7,4 @@ export interface RegisterVo {
     name: string;
     sex: boolean;
     mail: string;
-    code: string;
 }

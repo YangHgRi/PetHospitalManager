@@ -59,12 +59,10 @@ import DoctorCard from "@/components/zoneView/DoctorCard.vue";
 import FosterCard from "@/components/card/FosterCard.vue";
 import {DoctorDto} from "@/model/DO/DoctorDto";
 import {FosterCardDto} from "@/model/DO/FosterCardDto";
-import {NoticeDto} from "@/model/DO/NoticeDto";
 import {reqLoginUser, reqLogout} from "@/request/PowerApi";
 import {reqFourDoctor} from "@/request/DoctorApi";
 import {reqFourPet} from "@/request/PetApi";
 import {reqFosterPet} from "@/request/FosterApi";
-import {reqFourNotice} from "@/request/NoticeApi";
 import {useRouter} from "vue-router";
 import VueFoot from "@/components/show/VueFoot.vue";
 import WindRoll from "@/components/show/WindRoll.vue";
@@ -87,21 +85,10 @@ onBeforeMount(() => {
   reqFosterPet(4).then(res => {
     fosterCardTxt.records = res.records
   })
-  reqFourNotice().then(res => {
-    notices.value = res
-  })
   reqLoginUser().then(res => {
     isLogin.value = (res.clientId != null)
   })
 })
-
-/**
- ┌───────────────────────────────────┐
- │=============公告栏之相关============│
- └───────────────────────────────────┘
- */
-// 公告栏
-const notices = ref<NoticeDto[]>([])
 ref<InstanceType<typeof MyDialog> | null>(null);
 reactive({tit: "标题", content: "文本内容"});
 // 用户卡片的配置信息

@@ -46,12 +46,6 @@
         <input v-model="regVo.mail" autocomplete="off" class="input" name="email" placeholder="email@qq.com"
                type="email">
       </label>
-      <label>
-        验证码：
-        <input v-model="regVo.code" autocomplete="off" class="code-input" name="check-code" placeholder="code"
-               type="text">
-        <button type="button" v-bind:disabled="mailBtn.dis" @click="sendMail">{{ mailBtn.btnTxt }}</button>
-      </label>
       <button type="button" @click="toReg">进行注册</button>
     </div>
   </div>
@@ -61,36 +55,17 @@
 import PageHead from "@/components/row/PageHead.vue";
 import {reactive} from "vue";
 import {ElMessage} from "element-plus";
-import {reqLogin, reqRegisExist, reqRegister, reqSendRegMail} from "@/request/PowerApi";
+import {reqLogin, reqRegisExist, reqRegister} from "@/request/PowerApi";
 import {RegisterVo} from "@/model/VO/RegisterVo";
 import {LoginVo, RoleEnum} from "@/model/VO/LoginVo";
-import {noMail} from "@/utils/MailUtil";
 
 const regVo = reactive<RegisterVo>({
   username: "",
   password: "",
   name: "",
   sex: true,
-  mail: "",
-  code: ""
+  mail: ""
 })
-const mailBtn = reactive({btnTxt: "发送验证码", dis: false})
-const sendMail = (): void => {
-  if (noMail(regVo.mail)) return;
-  mailBtn.dis = true;
-  let countDown = 30;
-  let intVal = setInterval(() => {
-    if (countDown === 0) {
-      clearInterval(intVal)
-      mailBtn.dis = false;
-      mailBtn.btnTxt = "发送验证码";
-      return
-    }
-    mailBtn.btnTxt = "等待中(" + countDown + ")";
-    countDown--;
-  }, 1000)
-  reqSendRegMail(regVo.mail)
-}
 
 // 用户名是否存在
 const isExist = () => {

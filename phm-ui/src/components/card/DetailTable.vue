@@ -10,8 +10,6 @@
       <td class="bold">操作</td>
       <td>
         <el-button type="primary" @click="updateRole">修改资料</el-button>
-        &nbsp;
-        <el-button type="warning" @click="updatePwd">重置密码</el-button>
       </td>
     </tr>
     <tr>
@@ -44,9 +42,6 @@ interface DetailTabType {
 
 const updateRole = () => {
   emit("upRole");
-}
-const updatePwd = () => {
-  emit("upPwd");
 }
 // 退出登录
 const router = useRouter()
