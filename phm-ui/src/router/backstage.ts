@@ -34,10 +34,6 @@ export const backstage: RouteRecordRaw[] = [
         path: "y-fosterList",
         component: () => import('@/views/backstage/y-fosterList.vue')
     }, {
-        // 公告表
-        path: "y-noticeList",
-        component: () => import('@/views/backstage/y-noticeList.vue')
-    }, {
         // 宠物表
         path: "y-petList",
         component: () => import('@/views/backstage/y-petList.vue')

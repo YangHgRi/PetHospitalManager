@@ -50,10 +50,5 @@ export const reception: RouteRecordRaw[] = [
                 component: () => import('@/views/reception/clientPet.vue')
             },
         ],
-    }, {
-        // 聊天页面：自医生处跳转
-        path: "chat/:doctorId?",
-        props: true,
-        component: () => import('@/views/reception/chat.vue')
-    },
+    }
 ]
