@@ -9,9 +9,6 @@
         <li>
           <router-link to="/doctorPage/d-appoint">处理挂号</router-link>
         </li>
-        <li>
-          <router-link to="/doctorPage/d-chat">在线咨询</router-link>
-        </li>
       </ul>
     </header>
     <main>
@@ -43,15 +40,6 @@
             <h2>处理挂号</h2>
             <router-link to="/doctorPage/d-appoint">
               <el-button plain size="large" type="danger">处理挂号</el-button>
-            </router-link>
-          </div>
-        </div>
-        <div class="box">
-          <span></span>
-          <div class="content">
-            <h2>在线咨询</h2>
-            <router-link to="/doctorPage/d-chat">
-              <el-button plain size="large" type="primary">在线咨询</el-button>
             </router-link>
           </div>
         </div>
