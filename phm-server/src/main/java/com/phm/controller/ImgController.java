@@ -26,11 +26,10 @@ import java.util.UUID;
 @RequestMapping("/common")
 public class ImgController {
     private static final Logger log = LoggerFactory.getLogger(ImgController.class);
-    private final String basePath, chatImg;
+    private final String basePath;
 
-    public ImgController(@Value("${pet-ship.images-path}") String basePath, @Value("${pet-ship.chatImg-path}") String chatImg) {
+    public ImgController(@Value("${pet-ship.images-path}") String basePath) {
         this.basePath = basePath;
-        this.chatImg = chatImg;
     }
 
     /**
@@ -51,34 +50,11 @@ public class ImgController {
     }
 
     /**
-     * 文件上传，聊天图片消息
-     */
-    @PostMapping("/upChat")
-    public String upChat(MultipartFile myFile) {
-        String fileName = getFileName(myFile);//使用UUID重新生成文件名
-        String filePath = chatImg + fileName;
-        try {
-            myFile.transferTo(new File(filePath));//转存临时文件
-        } catch (IOException e) {
-            log.warn("转存图片失败");
-        }
-        return fileName;
-    }
-
-    /**
      * 文件下载，头像图片
      */
     @GetMapping("/download")
     public void download(String name, HttpServletResponse response) {
         sendImg(name, response, basePath);
-    }
-
-    /**
-     * 文件下载，聊天图片
-     */
-    @GetMapping("/downChat")
-    public void downChat(String name, HttpServletResponse response) {
-        sendImg(name, response, chatImg);
     }
 
 
@@ -134,7 +110,7 @@ public class ImgController {
      * @param imgPath  图片路径
      */
     private void sendImg(String name, HttpServletResponse response, String imgPath) {
-        if (name == null || "".equals(name)) return;
+        if (name == null || name.isEmpty()) return;
         try (var fis = new FileInputStream(imgPath + name); var ops = response.getOutputStream()) {
             response.setContentType("image/jpeg");
             int len;
