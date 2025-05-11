@@ -54,12 +54,6 @@
           </el-icon>
           <span>寄养列表</span>
         </el-menu-item>
-        <el-menu-item index="/backstage/y-noticeList">
-          <el-icon>
-            <DataBoard/>
-          </el-icon>
-          <span>公告列表</span>
-        </el-menu-item>
       </el-menu>
     </aside>
     <main>
@@ -69,7 +63,7 @@
 </template>
 
 <script lang="ts" setup>
-import {DataBoard, Football, Menu as IconMenu, OfficeBuilding, School, Tickets, User,} from '@element-plus/icons-vue'
+import {Football, Menu as IconMenu, OfficeBuilding, School, Tickets, User,} from '@element-plus/icons-vue'
 import {reactive} from "vue";
 import {reqGetLoginD} from "@/request/DoctorApi";
 
