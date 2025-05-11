@@ -1,7 +1,6 @@
 package com.phm.controller;
 
 import com.phm.common.Result;
-import com.phm.common.SendMail;
 import com.phm.model.dto.AppointmentDto2;
 import com.phm.model.dto.DoctorDto;
 import com.phm.model.entity.Appointment;
@@ -13,7 +12,6 @@ import com.phm.service.IAppointmentService;
 import com.phm.service.IDoctorService;
 import com.phm.util.StrUtil;
 import com.phm.util.UserUtil;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -29,13 +27,11 @@ import java.util.List;
 public class DoctorLogController {
     private final IDoctorService doctorService;
     private final IAppointmentService appointService;
-    private final SendMail sendMail;
 
     @Autowired
-    public DoctorLogController(IDoctorService doctorService, IAppointmentService appointService, SendMail sendMail) {
+    public DoctorLogController(IDoctorService doctorService, IAppointmentService appointService) {
         this.doctorService = doctorService;
         this.appointService = appointService;
-        this.sendMail = sendMail;
     }
 
     /**
@@ -49,41 +45,15 @@ public class DoctorLogController {
     }
 
     /**
-     * 医生：重置密码发送邮件
-     */
-    @GetMapping("/resetPwd")
-    public Result sendMail(HttpSession session) {
-        if (UserUtil.getUser() instanceof Doctor doctor) {
-            String mail = doctor.getDoctorTel();
-            if (session.getAttribute(mail) != null) {
-                if (System.currentTimeMillis() - session.getCreationTime() < 30 * 1000)
-                    return Result.error("发送邮件需要间隔30s");
-            }
-            String code = sendMail.sendQQEmail(mail);
-            if (code != null) session.setAttribute(mail, code);
-            return Result.success("验证码已发送至邮箱");
-        } else return Result.error("发送失败");
-    }
-
-    /**
      * 医生：重置密码
      */
     @PutMapping("/resetPwd")
-    public Result resetPwd(@RequestBody DoctorResetPwdVo pwdVo, HttpSession session) {
+    public Result resetPwd(@RequestBody DoctorResetPwdVo pwdVo) {
         String password = pwdVo.password();
-        String checkCode = pwdVo.checkCode();
         if (UserUtil.getUser() instanceof Doctor doctor) {
-            String mail = doctor.getDoctorTel();
-            String sessionCode = (String) session.getAttribute(mail);
-            if (StrUtil.isWhite(checkCode)) return Result.error("验证码不能为空");
-            if (StrUtil.isWhite(password)) return Result.error("密码不能为空");
-            else if (sessionCode == null) return Result.error("请点击发送验证码");
-            else if (sessionCode.equals(checkCode.toUpperCase())) {
-                session.invalidate();//销毁验证码
-                password = StrUtil.tranPwd(password);
-                doctor.setDoctorPassword(password);// 重新设置密码
-                return Result.choice("密码重置", doctorService.updateById(doctor));
-            } else return Result.error("验证码不正确");
+            password = StrUtil.tranPwd(password);
+            doctor.setDoctorPassword(password);// 重新设置密码
+            return Result.choice("密码重置", doctorService.updateById(doctor));
         } else return Result.error("当前未登录");
     }
 
@@ -126,9 +96,6 @@ public class DoctorLogController {
      */
     @PutMapping("/appoint/deal")
     public Result dealAppoint(@RequestBody DealAppointVo dealAppointVo) {
-        return Result.choice("处理", appointService.lambdaUpdate()
-                .eq(Appointment::getAppointmentId, dealAppointVo.appointId())
-                .set(Appointment::getIsSuc, dealAppointVo.isSuc())
-                .update());
+        return Result.choice("处理", appointService.lambdaUpdate().eq(Appointment::getAppointmentId, dealAppointVo.appointId()).set(Appointment::getIsSuc, dealAppointVo.isSuc()).update());
     }
 }
