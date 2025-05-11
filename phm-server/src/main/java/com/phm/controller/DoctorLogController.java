@@ -6,7 +6,6 @@ import com.phm.model.dto.DoctorDto;
 import com.phm.model.entity.Appointment;
 import com.phm.model.entity.Doctor;
 import com.phm.model.vo.DealAppointVo;
-import com.phm.model.vo.DoctorResetPwdVo;
 import com.phm.security.model.RoleConst;
 import com.phm.service.IAppointmentService;
 import com.phm.service.IDoctorService;
@@ -42,19 +41,6 @@ public class DoctorLogController {
         if (UserUtil.getUser() instanceof Doctor doctor) {
             return doctorService.selectById(doctor.getDoctorId());
         } else return null;
-    }
-
-    /**
-     * 医生：重置密码
-     */
-    @PutMapping("/resetPwd")
-    public Result resetPwd(@RequestBody DoctorResetPwdVo pwdVo) {
-        String password = pwdVo.password();
-        if (UserUtil.getUser() instanceof Doctor doctor) {
-            password = StrUtil.tranPwd(password);
-            doctor.setDoctorPassword(password);// 重新设置密码
-            return Result.choice("密码重置", doctorService.updateById(doctor));
-        } else return Result.error("当前未登录");
     }
 
     /**

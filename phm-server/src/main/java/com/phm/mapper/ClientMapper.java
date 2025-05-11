@@ -7,7 +7,6 @@ import com.phm.model.entity.Client;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -34,16 +33,6 @@ public interface ClientMapper extends BaseMapper<Client> {
     List<NameDo> selectNameHavePet(Integer clientId);
 
     /**
-     * 登录控制器：密码找回时确定邮箱是否与账号匹配
-     *
-     * @param username 账号
-     * @param mail     邮箱
-     * @return 数据条数
-     */
-    @Select("select count(*) from client where is_del=0 and client_username=#{username} and client_tel=#{mail}")
-    int sureMail(@Param("username") String username, @Param("mail") String mail);
-
-    /**
      * 登录控制器：注册时确定当前用户名独一无二
      *
      * @param username 用户名
@@ -59,14 +48,4 @@ public interface ClientMapper extends BaseMapper<Client> {
      * @return 修改成功
      */
     boolean updateSelfById(Client client);
-
-    /**
-     * 找回密码时，通过用户名修改密码
-     *
-     * @param password 修改之后的密码
-     * @param username 用户名
-     * @return 修改成功
-     */
-    @Update("UPDATE client SET client_password=#{password} WHERE client_username=#{username}")
-    boolean updatePwdByUsername(String password, String username);
 }

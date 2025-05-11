@@ -9,8 +9,7 @@ public record RegisterVo(String username,
                          String password,
                          String name,
                          boolean sex,
-                         String mail,
-                         String code) {
+                         String mail) {
     /**
      * 得到加密后的密码
      */
