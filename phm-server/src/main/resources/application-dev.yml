@@ -11,7 +11,6 @@ spring:
 ---
 pet-ship:
   images-path: D:\code_space\PetHospitalManager\images\ # 照片存储路径
-  notice-path: D:\code_space\PetHospitalManager\notice\ # 公告存储路径
   chatImg-path: D:\code_space\PetHospitalManager\chatImg\ # 聊天图片存储路径
 ---
 #mybatis-plus:
