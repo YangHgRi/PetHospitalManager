@@ -6,7 +6,7 @@ spring:
     username: ${DB_USERNAME} # 用户名
     password: ${DB_PASSWORD} # 密码
 ---
-pet-ship:
+pet-hospital:
   images-path: D:\code_space\PetHospitalManager\images\ # 照片存储路径
 ---
 #mybatis-plus:

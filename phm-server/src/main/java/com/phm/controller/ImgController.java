@@ -28,7 +28,7 @@ public class ImgController {
     private static final Logger log = LoggerFactory.getLogger(ImgController.class);
     private final String basePath;
 
-    public ImgController(@Value("${pet-ship.images-path}") String basePath) {
+    public ImgController(@Value("${pet-hospital.images-path}") String basePath) {
         this.basePath = basePath;
     }
 
@@ -120,7 +120,7 @@ public class ImgController {
                 ops.flush();
             }
         } catch (Exception e) {
-            log.warn("未找到相应图片" + name);
+            log.warn("未找到相应图片{}", name);
         }
     }
 }

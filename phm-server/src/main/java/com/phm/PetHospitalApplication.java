@@ -6,11 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ShipPetApplication {
-    private static final Logger log = LoggerFactory.getLogger(ShipPetApplication.class);
+public class PetHospitalApplication {
+    private static final Logger log = LoggerFactory.getLogger(PetHospitalApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(ShipPetApplication.class, args);
+        SpringApplication.run(PetHospitalApplication.class, args);
         log.info("宠物医院管理系统启动");
         log.info("http://localhost:8085");
     }

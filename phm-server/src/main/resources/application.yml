@@ -1,10 +1,6 @@
 spring:
   profiles:
     active: dev # 默认使用dev配置文件
-  mail:
-    host: smtp.qq.com # 邮箱配置，账号与授权码在dev中
-    port: 587
-    default-encoding: UTF-8
   servlet:
     multipart:
       max-file-size: 3MB # 让上传的文件可以为3MB
