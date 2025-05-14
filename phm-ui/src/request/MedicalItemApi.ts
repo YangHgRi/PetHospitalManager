@@ -2,6 +2,7 @@
 import {Page} from "@/model/DO/Page.ts";
 import reqApi from "@/request/reqAPI.ts";
 import {Res} from "@/request/Res.ts";
+import {MedicalItem} from "@/model/entiy/MedicalItem.ts";
 
 export const reqMedicalItemPage = (params: {
   numPage: number;        // 当前页码（必填）

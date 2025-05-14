@@ -60,6 +60,12 @@
           </el-icon>
           <span>医疗项目列表</span>
         </el-menu-item>
+        <el-menu-item index="/backstage/y-medicalOrder">
+          <el-icon>
+            <FirstAidKit/>
+          </el-icon>
+          <span>医疗订单列表</span>
+        </el-menu-item>
       </el-menu>
     </aside>
     <main>

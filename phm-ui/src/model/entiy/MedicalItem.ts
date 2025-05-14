@@ -1,5 +1,5 @@
 // 医疗项目实体类型（对应Java的MedicalItem）
-interface MedicalItem {
+export interface MedicalItem {
   id?: number;            // 主键ID（可选，新增时无ID）
   name: string;           // 项目名称（必填）
   category?: string;      // 项目分类（如手术/检测等，可选）

@@ -18,6 +18,14 @@
         <input v-model="checkValue" name="radio" type="radio" value="/reception/clientCenter/clientAppoint">
         <span>挂号查看</span>
       </label>
+      <label>
+        <input v-model="checkValue" name="radio" type="radio" value="/reception/clientCenter/clientMedicalItem">
+        <span>医疗项目</span>
+      </label>
+      <label>
+        <input v-model="checkValue" name="radio" type="radio" value="/reception/clientCenter/clientMedicalOrder">
+        <span>医疗订单</span>
+      </label>
     </div>
     <!--盒子-->
     <LightBox>
