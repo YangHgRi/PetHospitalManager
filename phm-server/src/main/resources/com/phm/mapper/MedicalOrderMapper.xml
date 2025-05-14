@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phm.mapper.MedicalOrderMapper">
+    <resultMap id="MedicalOrderVO" type="com.phm.model.vo.MedicalOrderVO">
+        <id column="id" property="id"/>
+        <result column="medical_item_name" property="medicalItemName"/>
+        <result column="pet_name" property="petName"/>
+        <result column="user_name" property="userName"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="item_id" property="itemId"/>
+        <result column="pet_id" property="petId"/>
+        <result column="user_id" property="userId"/>
+        <result column="item_price" property="itemPrice"/>
+    </resultMap>
+
+    <!-- 分页联查（优化JOIN类型和动态条件） -->
+    <select id="pageQuery" resultMap="MedicalOrderVO">
+        SELECT mo.id,
+        mi.id AS item_id,
+        mi.name AS medical_item_name,
+        mi.price AS item_price,
+        p.pet_id,
+        p.pet_name,
+        c.client_id AS user_id,
+        c.client_name AS user_name,
+        mo.created_at
+        FROM medical_order mo
+        INNER JOIN medical_item mi ON mo.item_id = mi.id
+        INNER JOIN pet p ON mo.pet_id = p.pet_id
+        INNER JOIN client c ON mo.user_id = c.client_id
+        <where>
+            <if test="medicalItemName != null and medicalItemName != ''">
+                AND mi.name LIKE CONCAT('%', #{medicalItemName}, '%')
+            </if>
+            <if test="petName != null and petName != ''">
+                AND p.pet_name LIKE CONCAT('%', #{petName}, '%')
+            </if>
+            <if test="userName != null and userName != ''">
+                AND c.client_name LIKE CONCAT('%', #{userName}, '%')
+            </if>
+        </where>
+        ORDER BY mo.created_at DESC
+    </select>
+
+    <!-- 单条联查（优化JOIN类型） -->
+    <select id="getVOById" resultMap="MedicalOrderVO">
+        SELECT mo.id,
+               mi.name       AS medical_item_name,
+               p.pet_name,
+               c.client_name AS user_name,
+               mo.created_at
+        FROM medical_order mo
+                 INNER JOIN medical_item mi ON mo.item_id = mi.id
+                 INNER JOIN pet p ON mo.pet_id = p.pet_id
+                 INNER JOIN client c ON mo.user_id = c.client_id
+        WHERE mo.id = #{id}
+    </select>
+</mapper>
