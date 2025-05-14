@@ -54,6 +54,12 @@
           </el-icon>
           <span>寄养列表</span>
         </el-menu-item>
+        <el-menu-item index="/backstage/y-medicalItem">
+          <el-icon>
+            <FirstAidKit/>
+          </el-icon>
+          <span>医疗项目列表</span>
+        </el-menu-item>
       </el-menu>
     </aside>
     <main>
@@ -63,7 +69,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Football, Menu as IconMenu, OfficeBuilding, School, Tickets, User,} from '@element-plus/icons-vue'
+import {FirstAidKit, Football, Menu as IconMenu, OfficeBuilding, School, Tickets, User,} from '@element-plus/icons-vue'
 import {reactive} from "vue";
 import {reqGetLoginD} from "@/request/DoctorApi";
 
