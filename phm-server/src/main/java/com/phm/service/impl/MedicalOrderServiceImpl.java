@@ -28,9 +28,7 @@ public class MedicalOrderServiceImpl extends ServiceImpl<MedicalOrderMapper, Med
         Page<MedicalOrderVO> page = new Page<>(numPage, pageSize);
         IPage<MedicalOrderVO> medicalOrderVOIPage = baseMapper.pageQuery(page, miName, pName, uName);
         List<MedicalOrderVO> records = medicalOrderVOIPage.getRecords();
-        records.forEach(record -> {
-            record.setFormattedCreatedAt(formatter.format(record.getCreatedAt().toInstant()));
-        });
+        records.forEach(record -> record.setFormattedCreatedAt(formatter.format(record.getCreatedAt().toInstant())));
         medicalOrderVOIPage.setRecords(records);
         return medicalOrderVOIPage;
     }
