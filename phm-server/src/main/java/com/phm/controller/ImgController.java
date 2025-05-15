@@ -83,17 +83,26 @@ public class ImgController {
         File input = new File(path);
         try {
             BufferedImage img = ImageIO.read(input);
-            // 裁剪图片
-            int size = Math.min(img.getWidth(), img.getHeight());
-            BufferedImage subImage = img.getSubimage(0, 0, size, size);
-            // 开始转化图片
+            int width = img.getWidth();
+            int height = img.getHeight();
+            int size = Math.min(width, height); // 取宽高较小值作为正方形边长
+
+            // 计算居中裁剪的起始坐标（关键修改）
+            int x = (width - size) / 2;  // 横向居中：剩余宽度均分两侧
+            int y = (height - size) / 2; // 纵向居中：剩余高度均分两侧
+
+            // 裁剪中心区域的正方形（原代码是从左上角(0,0)开始，现改为(x,y)）
+            BufferedImage subImage = img.getSubimage(x, y, size, size);
+
+            // 缩放至128x128（保持比例不变）
             Image tmp = subImage.getScaledInstance(128, 128, Image.SCALE_SMOOTH);
             BufferedImage resized = new BufferedImage(128, 128, subImage.getType());
             Graphics2D g2d = resized.createGraphics();
             boolean drawImage = g2d.drawImage(tmp, 0, 0, null);
             log.info("转化{}图片{}", formatName, drawImage ? "成功" : "失败");
             g2d.dispose();
-            // 转化完成，将图片转存回去
+
+            // 覆盖原文件
             ImageIO.write(resized, formatName, input);
             return true;
         } catch (IOException e) {
@@ -101,6 +110,7 @@ public class ImgController {
             return false;
         }
     }
+
 
     /**
      * 图片发送到前端
