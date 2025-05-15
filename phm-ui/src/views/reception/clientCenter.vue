@@ -26,6 +26,10 @@
         <input v-model="checkValue" name="radio" type="radio" value="/reception/clientCenter/clientMedicalOrder">
         <span>医疗订单</span>
       </label>
+      <label>
+        <input v-model="checkValue" name="radio" type="radio" value="/reception/clientCenter/petSupply">
+        <span>宠物用品</span>
+      </label>
     </div>
     <!--盒子-->
     <LightBox>

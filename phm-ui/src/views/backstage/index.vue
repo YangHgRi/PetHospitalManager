@@ -66,6 +66,12 @@
           </el-icon>
           <span>医疗订单列表</span>
         </el-menu-item>
+        <el-menu-item index="/backstage/y-petSupply">
+          <el-icon>
+            <FirstAidKit/>
+          </el-icon>
+          <span>宠物用品列表</span>
+        </el-menu-item>
       </el-menu>
     </aside>
     <main>

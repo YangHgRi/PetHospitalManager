@@ -45,5 +45,9 @@ export const backstage: RouteRecordRaw[] = [
         // 医疗订单表
         path: "y-medicalOrder",
         component: () => import('@/views/backstage/y-medicalOrder.vue')
+    },{
+        // 宠物用品表
+        path: "y-petSupply",
+        component: () => import('@/views/backstage/y-petSupply.vue')
     }
 ]

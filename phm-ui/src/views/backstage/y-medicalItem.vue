@@ -82,6 +82,7 @@ import {
 } from "@/request/MedicalItemApi";
 import {Page} from "@/model/DO/Page.ts";
 import {PageQuery} from "@/model/VO/BackQuery.ts";
+import {MedicalItem} from "@/model/entiy/MedicalItem.ts";
 
 /**
  * 生命周期相关
